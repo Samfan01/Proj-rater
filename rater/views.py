@@ -4,4 +4,5 @@ from django.shortcuts import render
 
 def home(request):
     template_name = 'home.html'
-    return render(request,template_name)
+    title = 'Project-Rator : Where You Rate and get Your Project Rated on.'
+    return render(request,template_name,{'title':title})
