@@ -2,14 +2,18 @@
 
 {% block content %}
 {% include 'navbar.html' %}
+<br><br><br><br><br><br>
 <h1 class="text-center" style="color: chartreuse;">Add your Project.</h1>
 <br><br>
+   <div class="container-fluid">
     <div class="form-group">
         <form method = "POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
-            <button class="btn btn-secondary">Add Post</button>
+            <button class="btn btn-secondary">Add Project</button>
         </form>
 
     </div>
+
+   </div>
 {% endblock %}

@@ -9,12 +9,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(235, 215, 215);font-weight: bold; color: rgb(94, 40, 40);" >
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#" style="font-size: 75px;">Rator</a>
+        <a class="navbar-brand" href="/" style="font-size: 75px;">Rator</a>
       </div>
       {% if user.is_authenticated %}
       <ul class="nav navbar-nav navbar-center">
-        <li class=""><a href="#">Home</a></li>
-        <li ><form class="navbar-form navbar-left" action="/action_page.php" style="margin-left: 400px; margin-top: 10px;">
+        <li class=""><a href="/">Home</a></li>
+        <li ><form class="navbar-form navbar-left" action="{% url 'search_project %}" style="margin-left: 400px; margin-top: 10px;" role="search">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search" name="search">
                 <div class="input-group-btn">
@@ -24,8 +24,11 @@
                 </div>
             </div>
         </form></li>
+        <li class=""><a href="{% url 'new_project' %}"> <span class="glyphicon glyphicon-upload"> Upload</span></a></li>
+        
         <li>
-            <a href="accounts/logout" style="margin-left: 480px;">
+            
+            <a href="accounts/logout" style="margin-left: 380px;">
                 <span class="glyphicon glyphicon-log-out"> Logout </span>
               </a>
         </li>
