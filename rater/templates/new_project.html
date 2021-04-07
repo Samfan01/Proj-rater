@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<h1 class="text-center" style="color: chartreuse;">Add your Project.</h1>
+<br><br>
+    <div class="form-group">
+        <form method = "POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-secondary">Add Post</button>
+        </form>
+
+    </div>
+{% endblock %}
