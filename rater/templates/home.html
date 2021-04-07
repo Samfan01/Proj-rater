@@ -33,6 +33,24 @@
         </div>
 
     </div>
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-md-4">
+         <div class="card" id="disp">
+            <img class="card-img-top" src="{{project.image.url}}" alt="Card image"  height="500px" width="100%">
+            <div class="card-body" id="body">
+              <h4 class="card-title"><strong>Project name :</strong>{{ project.title }}</h4>
+              <p class="card-text"><strong>Project description :</strong>{{project.description}}</p>
+              <a href="{{project.link}}" class="btn btn-primary">View {{project.title}} site. </a>
+              <br>
+            </div>
+          </div>
+          <br><br>
+        </div>
+        
+        {% endfor %}
+
+    </div>
 
 </div>
 {% endblock%}

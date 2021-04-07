@@ -10,10 +10,14 @@ class Project(models.Model):
     image = models.ImageField(upload_to = 'rator/')
     description = models.TextField()
     link = models.URLField()
+    post_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.title
         
-    
+    @classmethod
+    def get_projects(cls):
+        projects = cls.objects.all()
+        return projects
     
     
