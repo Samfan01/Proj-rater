@@ -1,6 +1,21 @@
 {% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+
 
 {% block content %}
+{{block.super}}
 {% include 'navbar.html' %}
-<h1>Hello World!!</h1>
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+<div class="container-fluid">
+    <div class="jumbotron" id="intro">
+
+    </div>
+
+</div>
 {% endblock%}
