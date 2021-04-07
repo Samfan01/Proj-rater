@@ -1,4 +1,9 @@
-
+#intro{
+    text-align: center;
+    padding-top: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    font-family: 'Zilla Slab Highlight', cursive;
+}
 
 
 
