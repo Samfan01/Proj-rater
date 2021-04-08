@@ -23,3 +23,16 @@ def new_project(request):
         
         return render(request,template_name,{'form':form})
     
+def search_project(request):
+    
+    if 'title' in request.GET and request.GET['title']:
+        search_term = request.GET.get('title')
+        searched_projects = Project.search_by_title(search_term)
+        message = f'{search_term}'
+        
+        return render(request, 'search.html',{'message':message,'projects':searched_projects})
+    
+    else:
+        message = "You haven't searched for any item."
+        return render(request,'search.html',{'message':message})
+    

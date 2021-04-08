@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+
+
+{% block content %}
+{{block.super}}
+{% include 'navbar.html' %}
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@400;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+<div class="container-fluid">
+
+  <div class="row">
+    {% if projects%}
+      <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 projects for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if projects %}
+    {% for project in projects %}
+    <div class="col-md-4">
+        <div class="card" id="disp">
+           <img class="card-img-top" src="{{project.image.url}}" alt="Card image"  height="500px" width="100%">
+           <div class="card-body" id="body">
+             <h4 class="card-title"><strong>Project name :</strong>{{ project.title }}</h4>
+             <p class="card-text"><strong>Project description :</strong>{{project.description}}</p>
+             <p><strong>Posted :</strong>{{project.post_date}}</p>
+             <a href="{{project.link}}" class="btn btn-primary">View {{project.title}} site. </a>
+             <br>
+           </div>
+         </div>
+         <br><br>
+       </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
