@@ -9,7 +9,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(235, 215, 215);font-weight: bold; color: rgb(94, 40, 40);" >
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/" style="font-size: 75px;">Rator</a>
+        <a class="navbar-brand" href="/" style="font-size: 55px;">Rator</a>
       </div>
       {% if user.is_authenticated %}
       <ul class="nav navbar-nav navbar-center">
@@ -25,10 +25,9 @@
             </div>
         </form></li>
         <li class=""><a href="{% url 'new_project' %}"> <span class="glyphicon glyphicon-upload"> Upload</span></a></li>
-        
+        <li class=""><a href="{% url 'profile' %}"> <span class="glyphicon glyphicon-user"> Profile</span></a></li>
         <li>
-            
-            <a href="accounts/logout" style="margin-left: 380px;">
+                <a href="accounts/logout" style="margin-left: 300px;">
                 <span class="glyphicon glyphicon-log-out"> Logout </span>
               </a>
         </li>

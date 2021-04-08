@@ -7,8 +7,8 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your models here.
 
 class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to = 'profile')
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
+    profile_pic = models.ImageField(upload_to = 'profile',default='download.jpeg',blank=True,null=True)
     bio = models.TextField()
     email = models.EmailField()
     
@@ -44,11 +44,13 @@ class Project(models.Model):
     '''
     Project class to create instances of the project post
     '''
+    
     title = models.CharField(max_length = 30)
     image = models.ImageField(upload_to = 'rator/')
     description = models.TextField()
     link = models.URLField()
     post_date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey('Profile',on_delete=models.CASCADE,related_name='project')
     
     def __str__(self):
         return self.title

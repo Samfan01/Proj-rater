@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import Project
-from .forms import NewProjectForm
+from .models import Project,Profile
+from .forms import NewProjectForm,ProfileForm
 
 # Create your views here.
 
@@ -12,16 +12,19 @@ def home(request):
 
 def new_project(request):
     model = Project
-    form = NewProjectForm
+    
     template_name = 'new_project.html',
     if request.method == 'POST':
         form = NewProjectForm(request.POST,request.FILES)
         if form.is_valid():
+            form = form.save(commit=False)
+            form.user = request.user.profile
             form.save()
-        return redirect('home')
+            return redirect('home')
     else:
+        form = NewProjectForm()
         
-        return render(request,template_name,{'form':form})
+    return render(request,template_name,{'form':form})
     
 def search_project(request):
     
@@ -37,10 +40,10 @@ def search_project(request):
         return render(request,'search.html',{'message':message})
 def profile(request):
     template_name = 'profile.html'
+    projects = request.user.profile.project.all()
     
     
-    
-    return render(request,template_name)
+    return render(request,template_name,{'projects':projects})
 
 def update_profile(request):
     model = Profile

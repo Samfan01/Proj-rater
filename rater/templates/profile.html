@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+
+
+{% block content %}
+{{block.super}}
+{% include 'navbar.html' %}
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+<br><br><br>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-4">
+        <h1 class="text-center" style="color: rgb(253, 204, 255); text-decoration: underline;"><strong>Profile</strong></h1>
+        <div class="card">
+            <img src="{{user.profile.profile_pic.url}}" alt="" style="width:100%" height="400px">
+            <h1></h1>
+            <p class="title"><strong>Username:</strong>{{user.username}}</p>
+            <p><strong>Brief Bio:</strong><em>{{user.profile.bio}}</em></p>
+            <p><strong>Email:</strong><em>{{user.profile.email}}</em></p>
+                <p><button class="tags"><a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a></button></p>
+            <div ><a href="{% url 'update_profile' %}" class="btn btn-info">Edit Profile </a></div>
+            <hr>
+          </div>
+        
+    </div>
+    <div class="col-md-8">
+        <h1 class="text-center" style="color: rgb(253, 204, 255); text-decoration: underline;"><strong>My Projects</strong></h1>
+        {% for project in projects %}
+        <div class="col-md-6">
+         <div class="card" style="width: 100%;">
+            <img class="card-img-top" src="{{project.image.url}}" alt="Card image"  height="500px" width="100%">
+            <div class="card-body" id="body">
+              <h4 class="card-title"><strong>Project name :</strong>{{ project.title }}</h4>
+              <p class="card-text"><strong>Project description :</strong>{{project.description}}</p>
+              <p><strong>Posted :</strong>{{project.post_date}}</p>
+              <p>{{project.user.user.username}}</p>
+              <a href="{{project.link}}" class="btn btn-primary">View {{project.title}} site. </a>
+              <br><br>
+            </div>
+          </div>
+          <br><br>
+        </div>
+        
+        {% endfor %}
+
+    </div>
+
+</div>
+</div>
+{% endblock %}
+

@@ -15,12 +15,12 @@
 {% endblock %}
 
 <div class="container-fluid">
-
+<br><br><br>
   <div class="row">
     {% if projects%}
-      <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+      <h2>Found {{ projects|length }} results for {{message}} Projects.</h2>
     {% else %}
-      <h2> Found 0 projects for the search term {{message}}</h2>
+      <h2> Found 0 results for  {{message}} Projects.</h2>
     {% endif %}
 
   </div>
