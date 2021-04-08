@@ -66,5 +66,29 @@ class Project(models.Model):
     def search_by_title(cls,search_term):
         projects = cls.objects.filter(title__icontains=search_term)
         return projects
+
+RATE_CHOICES = [
+    (1,'1 - 1'),
+    (2,'2 - 2'),
+    (3,'3 - 3'),
+    (4,'4 - 4'),
+    (5,'5 - 5'),
+    (6,'6 - 6'),
+    (7,'7 - 7'),
+    (8,'8 - 8'),
+    (9,'9 - 9'),
+    (10,'10 - 10'),
+]    
     
+class Review(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add = True)
+    review = models.TextField(max_length = 300, blank = True)
+    design_rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+    usability_rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+    content_rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
     
+    def __str__(self):
+        return self.user.username
+        
