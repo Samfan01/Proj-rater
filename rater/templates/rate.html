@@ -45,6 +45,8 @@
       <h2>Reviews</h2>
       {% for review in reviews %}
       <p>{{review.review}}</p>
+      <p><strong>Posted by :</strong><em>{{review.user.user.username}}</em></p>
+      <p>{{review.usability_rate}}</p>
       {% endfor%}
     </div>
     

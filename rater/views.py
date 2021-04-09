@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Project,Profile
+from .models import Project,Profile,Review
 from .forms import NewProjectForm,ProfileForm,RateForm
 
 # Create your views here.
@@ -64,7 +64,8 @@ def update_profile(request):
 
 def rate(request,project_id):
     project = get_object_or_404(Project, id=project_id)
-    user = request.user
+    user = request.user.profile
+    reviews = Review.objects.filter(project=project_id)
     
     if request.method == 'POST':
         form = RateForm(request.POST)
@@ -79,4 +80,4 @@ def rate(request,project_id):
         
     template_name = 'rate.html'
     
-    return render(request,template_name,{'form':form,'project':project})
+    return render(request,template_name,{'form':form,'project':project,'reviews':reviews})

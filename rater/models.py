@@ -86,7 +86,7 @@ RATE_CHOICES = [
 ]    
     
 class Review(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey('Profile',on_delete=models.CASCADE,related_name='review')
     project = models.ForeignKey('Project',on_delete=models.CASCADE,related_name='review')
     date = models.DateTimeField(auto_now_add = True)
     review = models.TextField(max_length = 300, blank = True)

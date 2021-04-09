@@ -31,7 +31,7 @@ class RateForm(forms.ModelForm):
         
         widgets = {
             'review': forms.Textarea(attrs={'class':'form-control'}),
-            'design_rate':forms.Select(choices=RATE_CHOICES),
-            'usability_rate':forms.Select(choices=RATE_CHOICES),
-            'content_rate':forms.Select(choices=RATE_CHOICES)
+            'design_rate':forms.Select(choices=RATE_CHOICES,attrs={'class':'form-control'}),
+            'usability_rate':forms.Select(choices=RATE_CHOICES,attrs={'class':'form-control'}),
+            'content_rate':forms.Select(choices=RATE_CHOICES,attrs={'class':'form-control'})
         }
