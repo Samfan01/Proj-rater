@@ -10,6 +10,7 @@ urlpatterns=[
     path('search/',views.search_project, name = 'search_project'),
     path('profile',views.profile,name = 'profile'),
     path('update_profile',views.update_profile,name = 'update_profile'),
+    path('rate/<int:project_id>/',views.rate,name='rate_project')
 ]
 
 if settings.DEBUG:

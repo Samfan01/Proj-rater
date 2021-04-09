@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Project,Profile
-from .forms import NewProjectForm,ProfileForm
+from .forms import NewProjectForm,ProfileForm,RateForm
 
 # Create your views here.
 
@@ -62,3 +62,21 @@ def update_profile(request):
     return render(request,template_name,{'form':form})
 
 
+def rate(request,project_id):
+    project = get_object_or_404(Project, id=project_id)
+    user = request.user
+    
+    if request.method == 'POST':
+        form = RateForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = user
+            rate.project = project
+            rate.save()
+            return redirect('home')
+    else:
+        form = RateForm()
+        
+    template_name = 'rate.html'
+    
+    return render(request,template_name,{'form':form,'project':project})

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+
+
+{% block content %}
+{{block.super}}
+{% include 'navbar.html' %}
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@400;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+<br><br><br><br><br><br>
+<div class="container-fluid">
+<div class="row " >
+    <div class="col-md-4">
+        <h1 class="text-center" style="text-decoration: underline;font-family:Zilla Slab Highlight, cursive; "><strong>Add Review</strong></h1>
+    <div class="form-group">
+        <form method = "POST" enctype="multipart/form-data" action="{% url 'rate_project' project.id  %}">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-secondary" type="submit">Add Review</button>
+        </form>
+    
+    </div>
+</div>
+    
+    <div class="col-md-8">
+     <div class="card" id="disp">
+        <a href="{% url 'rate_project' project_id=project.id %}"><img class="card-img-top" src="{{project.image.url}}" alt="Card image"  height="500px" width="100%"></a>
+        <div class="card-body" id="body">
+          <h4 class="card-title"><strong>Project name :</strong>{{ project.title }}</h4>
+          <p class="card-text"><strong>Project description :</strong>{{project.description}}</p>
+          <p><strong>Posted :</strong>{{project.post_date}}</p>
+          <p><strong>Posted by :</strong><em>{{project.user.user.username}}</em></p>
+          <a href="{{project.link}}" class="btn btn-primary">View {{project.title}} site. </a>
+          <br>
+        </div>
+      </div>
+      <br><br>
+      <h2>Reviews</h2>
+      {% for review in reviews %}
+      <p>{{review.review}}</p>
+      {% endfor%}
+    </div>
+    
+    
+
+</div>
+</div>
+{% endblock %}

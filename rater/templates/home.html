@@ -37,15 +37,15 @@
         {% for project in projects %}
         <div class="col-md-4">
          <div class="card" id="disp">
-            <img class="card-img-top" src="{{project.image.url}}" alt="Card image"  height="500px" width="100%">
+            <a href="{% url 'rate_project' project_id=project.id %}"><img class="card-img-top" src="{{project.image.url}}" alt="Card image"  height="500px" width="100%"></a>
             <div class="card-body" id="body">
               <h4 class="card-title"><strong>Project name :</strong>{{ project.title }}</h4>
               <p class="card-text"><strong>Project description :</strong>{{project.description}}</p>
               <p><strong>Posted :</strong>{{project.post_date}}</p>
-              <p>{{project.user.user.username}}</p>
+              <p><strong>Posted by :</strong><em>{{project.user.user.username}}</em></p>
               <a href="{{project.link}}" class="btn btn-primary">View {{project.title}} site. </a>
               <br>
-            </div>
+             </div>
           </div>
           <br><br>
         </div>
