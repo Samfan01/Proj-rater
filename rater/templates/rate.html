@@ -30,7 +30,7 @@
 </div>
     
     <div class="col-md-8">
-     <div class="card" id="disp">
+     <div class="card" id="disp" style="height: 100%;">
         <a href="{% url 'rate_project' project_id=project.id %}"><img class="card-img-top" src="{{project.image.url}}" alt="Card image"  height="500px" width="100%"></a>
         <div class="card-body" id="body">
           <h4 class="card-title"><strong>Project name :</strong>{{ project.title }}</h4>
@@ -39,14 +39,27 @@
           <p><strong>Posted by :</strong><em>{{project.user.user.username}}</em></p>
           <a href="{{project.link}}" class="btn btn-primary">View {{project.title}} site. </a>
           <br>
+          <h6 class="text-center">Project Ratings</h6>
+          <div class="ratings" style="color: blue; font-weight: bolder;">
+            <h5 style="color: #991b16;"><strong>Average Rating :</strong>{{average}}</h5>
+            <p><i class="fa fa-star-half-o" aria-hidden="true"></i><strong>Design average :</strong>{{design_average}}</p>
+            <p><i class="fa fa-star-half-o" aria-hidden="true"></i><strong>Usability average :</strong>{{usability_average}}</p>
+            <p><i class="fa fa-star-half-o" aria-hidden="true"></i>Content average :{{content_average}}</p>
+        </div>
         </div>
       </div>
       <br><br>
       <h2>Reviews</h2>
       {% for review in reviews %}
-      <p>{{review.review}}</p>
-      <p><strong>Posted by :</strong><em>{{review.user.user.username}}</em></p>
-      <p>{{review.usability_rate}}</p>
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{review.user.user.username}}</h5>
+         <p class="card-text">{{review.review}}</p>
+          <a href="#" class="card-link">Usability: {{review.usability_rate}}</a><br>
+          <a href="#" class="card-link">Design: {{review.design_rate}}</a><br>
+          <a href="#" class="card-link">Content: {{review.content_rate}}</a>
+        </div>
+      </div>
       {% endfor%}
     </div>
     

@@ -38,6 +38,9 @@
         <div class="col-md-4">
          <div class="card" id="disp">
             <a href="{% url 'rate_project' project_id=project.id %}"><img class="card-img-top" src="{{project.image.url}}" alt="Card image"  height="500px" width="100%"></a>
+            <div class="card-img-overlay">
+                <p>go</p>
+            </div>
             <div class="card-body" id="body">
               <h4 class="card-title"><strong>Project name :</strong>{{ project.title }}</h4>
               <p class="card-text"><strong>Project description :</strong>{{project.description}}</p>

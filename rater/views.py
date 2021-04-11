@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Project,Profile,Review
 from .forms import NewProjectForm,ProfileForm,RateForm
+from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 
 # Create your views here.
 
@@ -67,6 +69,27 @@ def rate(request,project_id):
     user = request.user.profile
     reviews = Review.objects.filter(project=project_id)
     
+    design_rate_average = reviews.aggregate(Avg("design_rate"))["design_rate__avg"]
+    if design_rate_average == None:
+        design_average = 0
+    else:
+        design_average = round(design_rate_average,1)
+
+    usability_rate_average = reviews.aggregate(Avg("usability_rate"))["usability_rate__avg"]
+    if usability_rate_average == None:
+        usability_average = 0
+    else:
+        usability_average = round(usability_rate_average,1)
+
+    content_rate_average = reviews.aggregate(Avg("content_rate"))["content_rate__avg"]
+    if content_rate_average == None:
+        content_average = 0
+    else:    
+        content_average = round(content_rate_average,1)
+
+    sum = design_average+usability_average+content_average
+    average = round(int(sum)/3,2)
+    
     if request.method == 'POST':
         form = RateForm(request.POST)
         if form.is_valid():
@@ -80,4 +103,4 @@ def rate(request,project_id):
         
     template_name = 'rate.html'
     
-    return render(request,template_name,{'form':form,'project':project,'reviews':reviews})
+    return render(request,template_name,{'form':form,'project':project,'reviews':reviews,'design_average':design_average,'usability_average':usability_average,'content_average':content_average,'average':average})
